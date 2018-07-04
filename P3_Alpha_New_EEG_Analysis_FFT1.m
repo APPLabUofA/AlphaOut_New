@@ -1,8 +1,8 @@
 ccc
 
 exp = 'BikeOut';
-%subs = {'004' '005' '006' '007' '008' '009' '010' '011' '012' '013' '014' '016'};
- subs = {'016'}; %to test on just one sub
+subs = {'004' '005' '006' '007' '008' '009' '010' '011' '012' '013' '014' '016'};
+ %subs = {'016'}; %to test on just one sub
 
 nsubs = length(subs);
 conds = {'In';'Out'};
@@ -11,7 +11,7 @@ Pathname = ['M:\Data\bike\BikeOut\'];
 [ALLEEG EEG CURRENTSET ALLCOM] = eeglab;
 
 pick_trials = 504; %pick per resample
-electrode = 1;% pz
+electrode = 7;% pz
 perms = 1; %pick all the standard trials for each subject
 
 i_count = 0;
@@ -52,7 +52,15 @@ figure;
 boundedline(freqs(2:end),mean_power_out(:,1),stderr_power_out(:,1), 'b', freqs(2:end),mean_power_out(:,2),stderr_power_out(:,2), 'g' ); axis tight
 % 
 
+%%
+%New addittions to code (still working on it) - Daniel
 
+eeglab
+[ALLEEG EEG CURRENTSET ALLCOM] = eeglab;
+EEG = pop_loadset('filename',[Filename '_Corrected_Standard.set'],'filepath',[Pathname '\segments\']);
+figure; pop_newtimef( EEG, 1, 1, [-200  998], [3         0.5] , 'topovec', 1, 'elocs', EEG.chanlocs, 'chaninfo', EEG.chaninfo, 'caption', 'Oz', 'baseline',[0], 'plotphase', 'off', 'padratio', 1, 'winsize', 100);
+
+ %%
 
 %% Check for significance
 %Alpha frequencies: 8-12Hz
