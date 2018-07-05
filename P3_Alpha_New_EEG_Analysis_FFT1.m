@@ -58,10 +58,12 @@ boundedline(freqs(2:end),mean_power_out(:,1),stderr_power_out(:,1), 'b', freqs(2
 eeglab
 [ALLEEG EEG CURRENTSET ALLCOM] = eeglab;
 EEG = pop_loadset('filename',[Filename '_Corrected_Standard.set'],'filepath',[Pathname '\segments\']);
-figure; pop_newtimef( EEG, 1, 1, [-200  998], [3         0.5] , 'topovec', 1, 'elocs', EEG.chanlocs, 'chaninfo', EEG.chaninfo, 'caption', 'Oz', 'baseline',[0], 'plotphase', 'off', 'padratio', 1, 'winsize', 100);
+figure; pop_newtimef( EEG, 1, 7, [-200  998], [0] , 'topovec', 7, 'elocs', EEG.chanlocs, 'chaninfo', EEG.chaninfo, 'caption', 'Pz', 'baseline',[0], 'alpha',.05, 'freqs', [1:20], 'plotphase', 'off', 'ntimesout', 300, 'nfreqs', 20);
+
+%'winlen' 500 %for our sampling rate
 
  %%
-
+                                                                                                                                                                                                                                                                                                                                                 
 %% Check for significance
 %Alpha frequencies: 8-12Hz
 subfreqs1 = (mean(power_out(16:24,:,1,:),1))'
