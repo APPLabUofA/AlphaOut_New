@@ -1,8 +1,8 @@
 ccc
 
 exp = 'BikeOut';
-subs = {'004' '005' '006' '007' '008' '009' '010' '011' '012' '013' '014' '016'};
- %subs = {'016'}; %to test on just one sub
+%subs = {'004' '005' '006' '007' '008' '009' '010' '011' '012' '013' '014' '016'};
+ subs = {'016'}; %to test on just one sub
 
 nsubs = length(subs);
 conds = {'In';'Out'};
@@ -44,6 +44,7 @@ for i_sub = 1:nsubs
  
     end
 end
+
 eeglab redraw
 
 mean_power_out = squeeze(mean(power_out,2));
@@ -54,14 +55,22 @@ boundedline(freqs(2:end),mean_power_out(:,1),stderr_power_out(:,1), 'b', freqs(2
 
 %%
 %New addittions to code (still working on it) - Daniel
-
 eeglab
 [ALLEEG EEG CURRENTSET ALLCOM] = eeglab;
 EEG = pop_loadset('filename',[Filename '_Corrected_Standard.set'],'filepath',[Pathname '\segments\']);
 figure; pop_newtimef( EEG, 1, 7, [-200  998], [0] , 'topovec', 7, 'elocs', EEG.chanlocs, 'chaninfo', EEG.chaninfo, 'caption', 'Pz', 'baseline',[0], 'alpha',.05, 'freqs', [1:20], 'plotphase', 'off', 'ntimesout', 300, 'nfreqs', 20);
 
 %'winlen' 500 %for our sampling rate
+eeglab
+eegh
 
+figure; pop_newtimef( EEG, 1, 7, [-1000   998], [0] , 'topovec', 7, 'elocs', EEG.chanlocs, 'chaninfo', EEG.chaninfo, 'caption', 'Pz', 'baseline',[0], 'freqs', [1:30], 'plotphase', 'off', 'nfreqs', 30);
+
+[ersp itc powbase times frequencies]= pop_newtimef( EEG, 1, 7, [-1000   998], [0] , 'topovec', 7, 'elocs', EEG.chanlocs, 'chaninfo', EEG.chaninfo, 'caption', 'Pz', 'baseline',[0], 'freqs', [1:30], 'plotphase', 'off', 'nfreqs', 30);
+
+ccc
+
+newtimef()
  %%
                                                                                                                                                                                                                                                                                                                                                  
 %% Check for significance
